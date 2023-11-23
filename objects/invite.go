@@ -1,4 +1,4 @@
-package models
+package objects
 
 type invite struct {
 	whoInvite  *player
@@ -10,12 +10,14 @@ func (i invite) JoinAsMember() {
 	i.whoInvited.lobby = i.adress
 	i.whoInvited.role = member{}
 	i.adress.players = append(i.adress.players, i.whoInvited)
+	i.adress.subscribers = append(i.adress.subscribers, i.whoInvited)
 }
 
 func (i invite) JoinAsSpectator() {
 	i.whoInvited.lobby = i.adress
 	i.whoInvited.role = spectator{}
 	i.adress.players = append(i.adress.players, i.whoInvited)
+	i.adress.subscribers = append(i.adress.subscribers, i.whoInvited)
 
 }
 
